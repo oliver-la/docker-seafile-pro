@@ -18,13 +18,13 @@ RUN apt-get update && apt-get install -y \
 RUN pip install boto
 
 # Get latest tarball and extract it
-RUN wget "https://download.seafile.com/d/06d4ca0272/files/?p=/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz&dl=1" -O seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz
-RUN tar -xzf seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz
+RUN wget "https://download.seafile.com/d/06d4ca0272/files/?p=/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz&dl=1" -O "seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz"
+RUN tar -xzf "seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz"
 
 RUN mkdir installed
-RUN mv seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz installed
+RUN mv "seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz" installed
 
-WORKDIR /seafile/seafile-pro-server-${SEAFILE_VERSION}
+WORKDIR "/seafile/seafile-pro-server-${SEAFILE_VERSION}"
 
 # Setup seafile
 RUN ulimit -n 30000
