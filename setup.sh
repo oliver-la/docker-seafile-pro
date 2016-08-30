@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Get latest tarball and extract it
 cd /seafile
 
@@ -15,11 +17,11 @@ cd "/seafile/seafile-pro-server-${SEAFILE_VERSION}"
 ulimit -n 30000
 ./setup-seafile.sh auto
 
+# Custom configurations
 mkdir -p /seafile/conf
 echo "ENABLE_RESUMABLE_FILEUPLOAD = True" >> /seafile/conf/seahub_settings.py
+mv /seafevents.conf /seafile/conf/
 
+# Launch setup
 ./seafile.sh start
-
-[[ "${autostart}" =~ [Tt]rue && -x /opt/seafile/seafile-server-latest/seahub.sh ]] || exit 0
-
 ./seahub.sh start

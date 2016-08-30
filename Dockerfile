@@ -1,6 +1,8 @@
-FROM ubuntu:14.04
+FROM phusion/baseimage
 MAINTAINER xama <oliver@xama.us>
 ENV SEAFILE_VERSION 5.1.11
+ENV ADMIN_EMAIL admin@example.com
+ENV ADMIN_PASSWORD admin
 
 EXPOSE 8082 8000
 
@@ -17,19 +19,21 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install boto
 
-COPY setup.sh /setup.sh
-RUN chmod +x /setup.sh
-RUN /setup.sh
+# Install Seafile service.
+RUN mkdir /etc/service/seafile
+ADD service-seafile-run.sh /etc/service/seafile/run
+ADD service-seafile-stop.sh /etc/service/seafile/stop
 
-COPY seafevents.conf /seafile/conf/seafevents.conf
+# Install Seahub service.
+RUN mkdir /etc/service/seahub
+ADD service-seahub-run.sh /etc/service/seahub/run
+ADD service-seahub-stop.sh /etc/service/seahub/stop
 
-# Auto start
-COPY seafile.conf /etc/init/seafile.conf
-COPY seahub.conf /etc/init/seahub.conf
+COPY seafevents.conf /seafevents.conf
 
 # Clean up
-RUN apt-get remove -y wget
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD ["/bin/bash"]
+ADD setup.sh /usr/local/sbin/setup
+CMD /sbin/my_init
