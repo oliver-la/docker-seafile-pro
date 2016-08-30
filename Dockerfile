@@ -22,12 +22,16 @@ RUN pip install boto
 # Install Seafile service.
 RUN mkdir /etc/service/seafile
 ADD service-seafile-run.sh /etc/service/seafile/run
+RUN chmod +x /etc/service/seafile/run
 ADD service-seafile-stop.sh /etc/service/seafile/stop
+RUN chmod +x /etc/service/seafile/stop
 
 # Install Seahub service.
 RUN mkdir /etc/service/seahub
 ADD service-seahub-run.sh /etc/service/seahub/run
+RUN chmod +x /etc/service/seahub/run
 ADD service-seahub-stop.sh /etc/service/seahub/stop
+RUN chmod +x /etc/service/seahub/stop
 
 COPY seafevents.conf /seafevents.conf
 
