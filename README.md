@@ -17,11 +17,13 @@ Don't worry, you'll see it's very simple. I promise! ;)
 
 ```
 docker run -it \
-	--name=seafile \
+	--name=seafile-setup \
 	-p 8082:8082 \
 	-p 8000:8000 \
 	-v /var/seafile:/seafile \
 	xama/docker-seafile-pro setup
+	
+docker rm seafile-setup
 ```
 
 PLEASE NOTE THE "setup" AFTER THE IMAGE NAME!
@@ -36,7 +38,7 @@ docker run -d \
 	-p 8082:8082 \
 	-p 8000:8000 \
 	-v /var/seafile:/seafile \
-	xama/docker-seafile-pro setup
+	xama/docker-seafile-pro
 ```
 
 ## Contribute
