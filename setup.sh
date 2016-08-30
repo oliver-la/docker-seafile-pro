@@ -15,7 +15,7 @@ cd "/seafile/seafile-pro-server-${SEAFILE_VERSION}"
 
 # Setup seafile
 ulimit -n 30000
-./setup-seafile.sh auto
+./setup-seafile.sh
 
 # Custom configurations
 mkdir -p /seafile/conf
