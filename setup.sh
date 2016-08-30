@@ -19,3 +19,7 @@ mkdir -p /seafile/conf
 echo "ENABLE_RESUMABLE_FILEUPLOAD = True" >> /seafile/conf/seahub_settings.py
 
 ./seafile.sh start
+
+[[ "${autostart}" =~ [Tt]rue && -x /opt/seafile/seafile-server-latest/seahub.sh ]] || exit 0
+
+./seahub.sh start
