@@ -25,3 +25,5 @@ mv /seafevents.conf /seafile/conf/
 # Launch setup
 ./seafile.sh start
 ./seahub.sh start
+./seafile.sh stop
+./seahub.sh stop
