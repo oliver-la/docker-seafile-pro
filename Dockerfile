@@ -36,4 +36,5 @@ RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD setup.sh /usr/local/sbin/setup
+RUN chmod +x /usr/local/sbin/setup
 CMD /sbin/my_init
