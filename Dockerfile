@@ -1,4 +1,4 @@
-FROM phusion/baseimage
+FROM phusion/baseimage:0.9.18
 MAINTAINER xama <oliver@xama.us>
 ENV SEAFILE_VERSION 5.1.11
 ENV ADMIN_EMAIL admin@example.com
