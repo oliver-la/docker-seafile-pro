@@ -41,7 +41,9 @@ docker run -d \
 	xama/docker-seafile-pro
 ```
 
-## Upgrade
+## Upgrade (EXPERIMENTAL)
+
+CAUTION: THIS FEATURE IS IN ITS CURRENT STATE EXPERIMENTAL. USE AT YOUR OWN RISK!
 
 This image supports upgrading seafile too!
 
