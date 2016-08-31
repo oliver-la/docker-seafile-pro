@@ -22,7 +22,7 @@ docker run -it \
 	-p 8000:8000 \
 	-v /var/seafile:/seafile \
 	xama/docker-seafile-pro setup
-	
+
 docker rm seafile-setup
 ```
 
@@ -40,6 +40,37 @@ docker run -d \
 	-v /var/seafile:/seafile \
 	xama/docker-seafile-pro
 ```
+
+## Upgrade
+
+This image supports upgrading seafile too!
+
+First, remove the seafile image. (You may have to stop your container first)
+
+```
+docker rmi xama/docker-seafile-pro
+```
+
+Proceed to run the container the same way you ran the setup. (except you need to add "upgrade" instead of "setup")
+
+In our example you'll have to run the container by:
+
+```
+docker run -it \
+	--name=seafile-upgrade \
+	-p 8082:8082 \
+	-p 8000:8000 \
+	-v /var/seafile:/seafile \
+	xama/docker-seafile-pro upgrade
+
+docker rm seafile-upgrade
+```
+
+This procedure requires a few minutes to complete. Please be patient and grab a coffee.
+
+If for some reason seafile fails to start or you weren't patient, you can restore a backup of the state before seafile has been upgraded.
+Backups are located under (in our example) `/var/seafile/backup` in .tar.gz format.
+Start the container as usual after restoring the backup (see "Run it").
 
 ## Contribute
 

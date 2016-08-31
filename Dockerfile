@@ -41,4 +41,6 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD setup.sh /usr/local/sbin/setup
 RUN chmod +x /usr/local/sbin/setup
+ADD upgrade.sh /usr/local/sbin/upgrade
+RUN chmod +x /usr/local/sbin/upgrade
 CMD /sbin/my_init
