@@ -16,14 +16,10 @@ This will pull the latest image and start the setup process automatically.
 Don't worry, you'll see it's very simple. I promise! ;)
 
 ```
-docker run -it \
+docker run -it --rm \
 	--name=seafile-setup \
-	-p 8082:8082 \
-	-p 8000:8000 \
 	-v /var/seafile:/seafile \
 	xama/docker-seafile-pro setup
-
-docker rm seafile-setup
 ```
 
 PLEASE NOTE THE "setup" AFTER THE IMAGE NAME!
@@ -47,9 +43,11 @@ CAUTION: THIS FEATURE IS IN ITS CURRENT STATE EXPERIMENTAL. USE AT YOUR OWN RISK
 
 This image supports upgrading seafile too!
 
-First, remove the seafile image. (You may have to stop your container first)
+First, remove the seafile image. (You have to stop your container first)
 
 ```
+docker stop seafile
+docker rm seafile
 docker rmi xama/docker-seafile-pro
 ```
 
@@ -58,14 +56,10 @@ Proceed to run the container the same way you ran the setup. (except you need to
 In our example you'll have to run the container by:
 
 ```
-docker run -it \
+docker run -it --rm \
 	--name=seafile-upgrade \
-	-p 8082:8082 \
-	-p 8000:8000 \
 	-v /var/seafile:/seafile \
 	xama/docker-seafile-pro upgrade
-
-docker rm seafile-upgrade
 ```
 
 This procedure requires a few minutes to complete. Please be patient and grab a coffee.
