@@ -4,7 +4,10 @@ cd /seafile
 
 # Check whether seafile is installed.
 echo "Checking if Seafile is installed ..."
-[[ -d "/seafile/seafile-server-latest" ]] || echo "[FAILED] Seafile is not installed!" && exit 0
+if [ ! -d "/seafile/seafile-server-latest" ]; then
+	echo "[FAILED] Seafile is not installed!"
+	exit 0
+fi
 
 # Get versions.
 CURRENT_VERSION=$(ls -lah | grep 'seafile-server-latest' | awk -F"seafile-pro-server-" '{print $2}')
@@ -12,7 +15,10 @@ NEW_VERSION=$SEAFILE_VERSION
 
 # Do I even need to upgrade?
 echo "Checking if there is an update available ..."
-[[ "$CURRENT_VERSION" -neq "$NEW_VERSION" ]] || echo "[FAILED] You already have the most recent version installed" && exit 0
+if [ "$CURRENT_VERSION" -eq "$NEW_VERSION" ]; then
+	echo "[FAILED] You already have the most recent version installed"
+	exit 0
+fi
 
 # Shut down seafile server.
 echo "Stopping Seafile ..."
