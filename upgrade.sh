@@ -20,11 +20,6 @@ if [ "$CURRENT_VERSION" == "$NEW_VERSION" ]; then
 	exit 0
 fi
 
-# Shut down seafile server.
-echo "Stopping Seafile ..."
-/etc/service/seafile/stop
-/etc/service/seahub/stop
-
 # Great, you think there's an update. Let's try.
 echo "Grabbing latest server binary ..."
 wget "https://download.seafile.com/d/06d4ca0272/files/?p=/seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz&dl=1" -O "seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz" > /dev/null 2>&1
