@@ -15,7 +15,7 @@ NEW_VERSION=$SEAFILE_VERSION
 
 # Do I even need to upgrade?
 echo "Checking if there is an update available ..."
-if [ "$CURRENT_VERSION" -eq "$NEW_VERSION" ]; then
+if [ "$CURRENT_VERSION" == "$NEW_VERSION" ]; then
 	echo "[FAILED] You already have the most recent version installed"
 	exit 0
 fi
