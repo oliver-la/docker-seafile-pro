@@ -15,9 +15,6 @@ RUN apt-get update && apt-get install -y \
   python-urllib3 sqlite3 wget \
   libreoffice libreoffice-script-provider-python fonts-vlgothic ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy && pip install boto
 
-# Create service directories
-RUN mkdir /etc/service/{seafile,seahub}
-
 # Install Seafile service.
 ADD service-seafile-run.sh /etc/service/seafile/run
 ADD service-seafile-stop.sh /etc/service/seafile/stop
