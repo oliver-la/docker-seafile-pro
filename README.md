@@ -11,7 +11,7 @@ This image will pull the latest pro edition of seafile and helps you set it up i
 
 You'll be guided through the setup procedure. It's kept very basic.
 
-Advanced configurations can be done directly via the configuration files generated during the setup.
+Advanced configurations can be made directly via the configuration files generated during the setup.
 
 ## Setup
 
@@ -44,7 +44,7 @@ CAUTION: THIS FEATURE IS IN ITS CURRENT STATE EXPERIMENTAL. USE AT YOUR OWN RISK
 
 This image supports upgrading seafile too!
 
-First, remove the seafile image. (You'LL have to stop your container first)
+First, remove the seafile image. (You'll have to stop your container first)
 
 ```
 docker stop seafile
@@ -52,7 +52,7 @@ docker rm seafile
 docker rmi xama/docker-seafile-pro
 ```
 
-Proceed to run the container the same way you ran the setup. (except you'LL need to use "upgrade" instead of "setup")
+Proceed to run the container the same way you ran the setup. (except you'll need to use "upgrade" instead of "setup")
 
 In our example you'll have to run the container by:
 
@@ -74,7 +74,8 @@ Start the container as usual after restoring the backup (see "Run").
 You can set the SEAFILE_VERSION environment variable manually using one of these compatible/tested versions.
  
 - 5.1.11
-- 6.0.2
+- ~~6.0.2~~ (removed by seafile due to unknown reason)
+- 6.0.4
 
 I didn't test any of the older versions. They MAY be compatible.
 
