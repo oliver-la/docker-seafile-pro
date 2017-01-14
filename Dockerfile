@@ -4,7 +4,6 @@ ENV SEAFILE_VERSION 6.0.6
 
 EXPOSE 8082 8000
 
-RUN mkdir /seafile
 VOLUME /seafile
 WORKDIR /seafile
 
@@ -19,23 +18,26 @@ RUN apt-get update && apt-get install -y \
 RUN wget "https://download.seafile.com/d/06d4ca0272/files/?p=/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz&dl=1" -O "/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz"
 
 # Install Seafile service.
-ADD service-seafile-run.sh /etc/service/seafile/run
-ADD service-seafile-stop.sh /etc/service/seafile/stop
+ADD service/seafile/run.sh /etc/service/seafile/run
+ADD service/seafile/stop.sh /etc/service/seafile/stop
 
 # Install Seahub service.
-ADD service-seahub-run.sh /etc/service/seahub/run
-ADD service-seahub-stop.sh /etc/service/seahub/stop
-
-# Set permissions
-RUN chmod +x /etc/service/seafile/* && chmod +x /etc/service/seahub/*
+ADD service/seahub/run.sh /etc/service/seahub/run
+ADD service/seahub/stop.sh /etc/service/seahub/stop
 
 # Add custom configuration
-COPY seafevents.conf /seafevents.conf
+COPY config/seafevents.conf /seafevents.conf
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ADD setup.sh /usr/local/sbin/setup
-ADD upgrade.sh /usr/local/sbin/upgrade
-RUN chmod +x /usr/local/sbin/setup && chmod +x /usr/local/sbin/upgrade
+ADD bin/setup.sh /usr/local/sbin/setup
+ADD bin/upgrade.sh /usr/local/sbin/upgrade
+
+# Set permissions
+RUN chmod +x /usr/local/sbin/setup && \
+	chmod +x /usr/local/sbin/upgrade && \
+	chmod +x /etc/service/seafile/* && \
+	chmod +x /etc/service/seahub/*
+
 CMD /sbin/my_init
