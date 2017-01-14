@@ -5,11 +5,11 @@ set -e
 # Get latest tarball and extract it
 cd /seafile
 
-wget "https://download.seafile.com/d/06d4ca0272/files/?p=/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz&dl=1" -O "seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz"
-tar -xzf "seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz"
+echo "Extracting server binary ..."
+tar -xzf "/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz"
 
 mkdir installed
-mv "seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz" installed
+mv "/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz" installed
 
 cd "/seafile/seafile-pro-server-${SEAFILE_VERSION}"
 
