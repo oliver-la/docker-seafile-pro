@@ -76,6 +76,8 @@ You can set the SEAFILE_VERSION environment variable manually using one of these
 - 5.1.11
 - ~~6.0.2~~ (removed by seafile due to unknown reason)
 - 6.0.4
+- 6.0.5
+- 6.0.6
 
 I didn't test any of the older versions. They MAY be compatible.
 
