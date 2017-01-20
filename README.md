@@ -71,22 +71,13 @@ Start the container as usual after restoring the backup (see "Run").
 
 ## Use a custom version
 
-You can set the SEAFILE_VERSION environment variable manually using one of these compatible/tested versions.
- 
-- 5.1.11
-- ~~6.0.2~~ (removed by seafile due to unknown reason)
-- 6.0.4
-- 6.0.5
-- 6.0.6
-
-I didn't test any of the older versions. They MAY be compatible.
-
-However, I recommend using rather the image tags provided by docker hub, since changes to the container environment may always occur, which could break previous versions. 
+I recommend using rather the image tags provided by docker hub, since changes to the container environment may always occur, which could break previous versions. 
 When using container tags you ensure the docker environment really works with your version of preference.
 For instance you'll want to use xama/docker-seafile-pro:5.1.11 instead of xama/docker-seafile-pro:latest if you want to stay at 5.1.11
 
+Refer to [Releases](https://github.com/xama5/docker-seafile-pro/releases)  for available versions.
 
 ## Contribute
 
 This solution is quick'n'dirty, but works.
-If you have any suggestions in order to improve this image, create a pull request. Thank you!
+If you have any suggestions in order to improve this image, create a pull request/issue. Thank you!
