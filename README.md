@@ -54,8 +54,6 @@ docker rmi xama/docker-seafile-pro
 
 Proceed to run the container the same way you ran the setup. (except you'll need to use "upgrade" instead of "setup")
 
-In our example you'll have to run the container by:
-
 ```
 docker run -it --rm \
 	--name=seafile-upgrade \
