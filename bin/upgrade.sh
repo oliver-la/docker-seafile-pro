@@ -20,19 +20,17 @@ if [ "$CURRENT_VERSION" == "$NEW_VERSION" ]; then
 	exit 0
 fi
 
-# Great, you think there's an update. Let's try.
-echo "Grabbing latest server binary ..."
-wget "https://download.seafile.com/d/06d4ca0272/files/?p=/seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz&dl=1" -O "seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz" > /dev/null 2>&1
-echo "Extracting server binary ..."
-tar -xzf "seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz" > /dev/null 2>&1
-mv "seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz" installed/
-
-cd "/seafile/seafile-pro-server-${NEW_VERSION}"
-
 # Backup the current version first.
 echo "Creating backup of existing seafile ..."
 mkdir -p "/seafile/backup"
 tar --exclude='/seafile/backup' -zcvf "/seafile/backup/seafile-pro-server-$CURRENT_VERSION-backup.tar.gz" "/seafile" > /dev/null 2>&1
+
+# Great, you think there's an update. Let's try.
+echo "Extracting server binary ..."
+tar -xzf "/seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz"
+mv "seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz" installed/
+
+cd "/seafile/seafile-pro-server-${NEW_VERSION}"
 
 # First we need to check if it's a maintenance update, since the process is different from a major/minor version upgrade
 CURRENT_MAJOR_VERSION=$(echo $CURRENT_VERSION | awk -F"." '{print $1}')
