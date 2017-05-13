@@ -75,6 +75,17 @@ For instance you'll want to use xama/docker-seafile-pro:5.1.11 instead of xama/d
 
 Refer to [Releases](https://github.com/xama5/docker-seafile-pro/releases)  for available versions.
 
+## Install license file
+
+You may install the pro edition for up to 3 users for free.
+If you bought a license, you can add the file to the root directory of seafile.
+`/var/seafile` in my case.
+
+## Important notice
+
+Since Seafile is included in the image as of 6.0.6, all prior versions are cannot be installed anymore, because seafile removed the binaries from their servers.
+If you already have Seafile with a prior version installed, you're fine. This only affects new users who wish to install an older version.
+
 ## Contribute
 
 This solution is quick'n'dirty, but works.
