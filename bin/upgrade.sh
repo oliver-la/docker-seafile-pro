@@ -44,7 +44,7 @@ NEW_MAINTENANCE_VERSION=$(echo $NEW_VERSION | awk -F"." '{print $3}')
 if [ "$CURRENT_MAJOR_VERSION" == "$NEW_MAJOR_VERSION" ] && [ "$CURRENT_MINOR_VERSION" == "$NEW_MINOR_VERSION" ]; then
   # Alright, this is only a maintenance update.
   echo "Performing minor upgrade ..."
-  sh ./upgrade/minor-upgrade.sh
+  ./upgrade/minor-upgrade.sh
   cd /seafile
   rm -rf "/seafile/seafile-pro-server-${CURRENT_VERSION}"
 else
@@ -56,7 +56,7 @@ else
 
     echo "Upgrading from $UPGRADE_FROM to $UPGRADE_TO ..."
     if [ "$UPGRADE_FROM" == "$CURRENT_MAJOR_VERSION.$CURRENT_MINOR_VERSION" ]; then
-      eval $file
+      $file
       CURRENT_MAJOR_VERSION=$(echo $UPGRADE_TO | awk -F"." '{print $1}')
       CURRENT_MINOR_VERSION=$(echo $UPGRADE_TO | awk -F"." '{print $2}')
     fi
