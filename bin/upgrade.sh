@@ -28,7 +28,7 @@ tar --exclude='/seafile/backup' -zcvf "/seafile/backup/seafile-pro-server-$CURRE
 # Great, you think there's an update. Let's try.
 echo "Extracting server binary ..."
 tar -xzf "/seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz"
-mv "seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz" installed/
+mv "/seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz" installed/
 
 cd "/seafile/seafile-pro-server-${NEW_VERSION}"
 
