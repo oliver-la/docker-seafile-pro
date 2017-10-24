@@ -20,7 +20,7 @@ RUN		apt-get update && \
 		pip install boto
 
 # Download seafile binary
-# List of binaries are here: https://download.seafile.com/d/06d4ca0272/files/
+# List of binaries are here: https://download.seafile.com/d/6e5297246c/files/?p=/pro/
 RUN		wget "https://download.seafile.com/d/6e5297246c/files/?p=/pro/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz&dl=1" -O "/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz"
 
 # Add seafile service.
