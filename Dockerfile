@@ -1,6 +1,6 @@
 FROM		phusion/baseimage:0.9.18
-MAINTAINER	xama <oliver@xama.us>
-ENV		SEAFILE_VERSION 6.1.1
+MAINTAINER	contact@oliver.la
+ENV			SEAFILE_VERSION 6.1.1
 
 EXPOSE		8082 8000
 
@@ -8,6 +8,7 @@ VOLUME		/seafile
 WORKDIR		/seafile
 
 # Required packages for pro edition
+# Taken from https://manual.seafile.com/deploy_pro/download_and_setup_seafile_professional_server.html
 RUN		apt-get update && \
 		DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		openjdk-7-jre \
@@ -19,19 +20,21 @@ RUN		apt-get update && \
 		pip install boto
 
 # Download seafile binary
+# List of binaries are here: https://download.seafile.com/d/06d4ca0272/files/
 RUN		wget "https://download.seafile.com/d/06d4ca0272/files/?p=/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz&dl=1" -O "/seafile-pro-server_${SEAFILE_VERSION}_x86-64.tar.gz"
 
-# Install Seafile service.
+# Add seafile service.
 ADD		service/seafile/run.sh /etc/service/seafile/run
 ADD		service/seafile/stop.sh /etc/service/seafile/stop
 
-# Install Seahub service.
+# Add seahub service
 ADD		service/seahub/run.sh /etc/service/seahub/run
 ADD		service/seahub/stop.sh /etc/service/seahub/stop
 
-# Add custom configuration
-COPY		config/seafevents.conf /seafevents.conf
+# Custom configuration
+COPY	config/seafevents.conf /seafevents.conf
 
+# Custom scripts
 ADD		bin/setup.sh /usr/local/sbin/setup
 ADD		bin/upgrade.sh /usr/local/sbin/upgrade
 

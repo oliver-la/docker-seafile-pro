@@ -7,16 +7,16 @@
 
 ## Introduction
 
-This image will pull the latest pro edition of seafile and helps you set it up in a docker environment.
-
-You'll be guided through the setup procedure. It's kept very basic.
-
-Advanced configurations can be made directly via the configuration files generated during the setup.
+You can use this image to set up and run seafile pro edition as a docker container. The pro edition has more features than the free one, but is limited to 3 users if you don't have a license.
 
 ## Setup
 
-This will pull the latest image and start the setup process automatically. (interactive mode)
-You'll be asked for some details (e.g. admin credentials).
+Due to the nature of seafile, the setup is interactive only. During the setup procedure you're going to be asked about a few things, default is most of the time OK. 
+
+You can tweak the configuration later by editing the config files generated during setup. I already included libreoffice integration (document preview), resumable file uploads and a sqlite3 database.
+
+Start the setup procedure by running the following command.
+Change `/var/seafile` if you want to have the installation somewhere else.
 
 ```
 docker run -it --rm \
@@ -29,6 +29,8 @@ PLEASE NOTE THE "setup" FOLLOWING THE IMAGE NAME!
 
 ## Run
 
+This will start seafile in the background.
+
 ```
 docker run -d \
 	--name=seafile \
@@ -37,6 +39,8 @@ docker run -d \
 	-v /var/seafile:/seafile \
 	xama/docker-seafile-pro
 ```
+
+You should be able to access `http://localhost:8000` in your browser now.
 
 ## Upgrade (EXPERIMENTAL)
 
@@ -69,24 +73,24 @@ Start the container as usual after restoring the backup (see "Run").
 
 ## Use a custom version
 
-I recommend using rather the image tags provided by docker hub, since changes to the container environment may always occur, which could break previous versions. 
+I recommend using rather the image tags provided by docker hub since changes to the container environment may always occur, which could break previous versions. 
 When using container tags you ensure the docker environment really works with your version of preference.
-For instance you'll want to use xama/docker-seafile-pro:5.1.11 instead of xama/docker-seafile-pro:latest if you want to stay at 5.1.11
+For instance, you'll want to use xama/docker-seafile-pro:5.1.11 instead of xama/docker-seafile-pro:latest if you want to stay on 5.1.11
 
-Refer to [Releases](https://github.com/xama5/docker-seafile-pro/releases)  for available versions.
+Refer to [Releases](https://github.com/xama5/docker-seafile-pro/releases) for available versions.
 
 ## Install license file
 
 You may install the pro edition for up to 3 users for free.
-If you bought a license, you can add the file to the root directory of seafile.
+If you have a license, you can add the file to the root directory of seafile.
 `/var/seafile` in my case.
 
 ## Important notice
 
-Since Seafile is included in the image as of 6.0.6, all prior versions are cannot be installed anymore, because seafile removed the binaries from their servers.
-If you already have Seafile with a prior version installed, you're fine. This only affects new users who wish to install an older version.
+Since Seafile is included in the image as of 6.0.6, all prior versions cannot be installed anymore because seafile removed the binaries from their servers.
+If you already have Seafile with a prior version installed you're fine. This only affects new users who wish to install an older version.
 
 ## Contribute
 
 This solution is quick'n'dirty, but works.
-If you have any suggestions in order to improve this image, create a pull request/issue. Thank you!
+If you have any suggestions in order to improve this image, please create a pull request/issue. Thank you!

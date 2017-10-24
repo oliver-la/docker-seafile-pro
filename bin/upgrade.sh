@@ -2,18 +2,16 @@
 
 cd /seafile
 
-# Check whether seafile is installed.
 echo "Checking if Seafile is installed ..."
 if [ ! -d "/seafile/seafile-server-latest" ]; then
 	echo "[FAILED] Seafile is not installed!"
 	exit 0
 fi
 
-# Get versions.
+# Get version based on the seafile-server-latest symbolic link that is pointing to the current installation.
 CURRENT_VERSION=$(ls -lah | grep 'seafile-server-latest' | awk -F"seafile-pro-server-" '{print $2}')
 NEW_VERSION=$SEAFILE_VERSION
 
-# Do I even need to upgrade?
 echo "Checking if there is an update available ..."
 if [ "$CURRENT_VERSION" == "$NEW_VERSION" ]; then
 	echo "[FAILED] You already have the most recent version installed"
@@ -21,7 +19,7 @@ if [ "$CURRENT_VERSION" == "$NEW_VERSION" ]; then
 fi
 
 # Backup the current version first.
-echo "Creating backup of existing seafile ..."
+echo "Creating backup of existing seafile and your files ..."
 mkdir -p "/seafile/backup"
 tar --exclude='/seafile/backup' -zcvf "/seafile/backup/seafile-pro-server-$CURRENT_VERSION-backup.tar.gz" "/seafile" > /dev/null 2>&1
 
@@ -43,12 +41,12 @@ NEW_MAINTENANCE_VERSION=$(echo $NEW_VERSION | awk -F"." '{print $3}')
 
 if [ "$CURRENT_MAJOR_VERSION" == "$NEW_MAJOR_VERSION" ] && [ "$CURRENT_MINOR_VERSION" == "$NEW_MINOR_VERSION" ]; then
   # Alright, this is only a maintenance update.
-  echo "Performing minor upgrade ..."
+  echo "Performing maintenance update ..."
   ./upgrade/minor-upgrade.sh
   cd /seafile
   rm -rf "/seafile/seafile-pro-server-${CURRENT_VERSION}"
 else
-  # Big version jump
+  # Big version jump (e.g. 6.1.x to 6.2.x)
   for file in ./upgrade/upgrade_*.sh
   do
     UPGRADE_FROM=$(echo "$file" | awk -F"_" '{print $2}')
