@@ -18,12 +18,7 @@ if [ "$CURRENT_VERSION" == "$NEW_VERSION" ]; then
 	exit 0
 fi
 
-# Backup the current version first.
-echo "Creating backup of existing seafile and your files ..."
-mkdir -p "/seafile/backup"
-tar --exclude='/seafile/backup' -zcvf "/seafile/backup/seafile-pro-server-$CURRENT_VERSION-backup.tar.gz" "/seafile" > /dev/null 2>&1
-
-# Great, you think there's an update. Let's try.
+# Extract pre-downloaded archive (by dockerfile)
 echo "Extracting server binary ..."
 tar -xzf "/seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz"
 mv "/seafile-pro-server_${NEW_VERSION}_x86-64.tar.gz" installed/

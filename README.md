@@ -45,10 +45,11 @@ You should be able to access `http://localhost:8000` in your browser now.
 ## Upgrade (EXPERIMENTAL)
 
 CAUTION: THIS FEATURE IS IN ITS CURRENT STATE EXPERIMENTAL. USE AT YOUR OWN RISK!
+ALWAYS CREATE A BACKUP BEFORE UPGRADING. THIS IS YOUR RESPONSIBILITY. (automatic backup functionality removed on 2017-10-24)
 
 This image supports upgrading seafile too!
 
-First, remove the seafile image. (You'll have to stop your container first)
+Remove the old container and image.
 
 ```
 docker stop seafile
@@ -56,7 +57,7 @@ docker rm seafile
 docker rmi xama/docker-seafile-pro
 ```
 
-Proceed to run the container the same way you ran the setup. (except you'll need to use "upgrade" instead of "setup")
+Proceed to start the upgrade process. (notice the "upgrade")
 
 ```
 docker run -it --rm \
@@ -67,9 +68,9 @@ docker run -it --rm \
 
 This procedure requires a few minutes to complete. Please be patient and grab a coffee.
 
-If for some reason seafile fails to start or you weren't patient, you can restore a backup of the state before seafile has been upgraded.
-Backups are located at (in our example) `/var/seafile/backup` in .tar.gz format.
 Start the container as usual after restoring the backup (see "Run").
+
+I do not regulary check if there is a new version out. If you notice that this image is behind, kindly create an issue, pull request or even a comment on hub.docker.com. Thanks!
 
 ## Use a custom version
 
