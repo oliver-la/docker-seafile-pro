@@ -1,6 +1,6 @@
 FROM		phusion/baseimage:0.9.18
 MAINTAINER	contact@oliver.la
-ENV		SEAFILE_VERSION 6.3.6
+ENV		SEAFILE_VERSION 6.3.7
 
 EXPOSE		8082 8000
 
