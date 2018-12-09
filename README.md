@@ -91,6 +91,10 @@ If you have a license, you can add the file to the root directory of seafile.
 Since Seafile is included in the image as of 6.0.6, all prior versions cannot be installed anymore because seafile removed the binaries from their servers.
 If you already have Seafile with a prior version installed you're fine. This only affects new users who wish to install an older version.
 
+## Maintenance
+
+This project is no longer actively maintained by the developer. Pull Requests will be merged. Please note that only **qualitative** Pull Requests will be merged, they can and will be rejected if they are of low quality.
+
 ## Contribute
 
 This solution is quick'n'dirty, but works.
